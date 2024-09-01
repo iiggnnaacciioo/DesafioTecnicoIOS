@@ -16,11 +16,11 @@ protocol CategoriesInteractorProtocol {
 class CategoriesInteractor {
 	let presenter: CategoriesPresenterProtocol
 
-	let worker: CategoriesWorkerProtocol
+    let apiClient: FakeStoreApiClientProtocol
 
-	init(presenter: CategoriesPresenterProtocol, worker: CategoriesWorkerProtocol) {
+	init(presenter: CategoriesPresenterProtocol, apiClient: FakeStoreApiClientProtocol) {
 		self.presenter = presenter
-		self.worker = worker
+		self.apiClient = apiClient
 	}
 }
 
@@ -28,7 +28,7 @@ extension CategoriesInteractor: CategoriesInteractorProtocol {
     func fetchCategories() {
         Task { @MainActor in
             do {
-                let categories = try await worker.getProductCategories()
+                let categories = try await apiClient.getProductCategories()
                 presenter.present(categories: categories)
             } catch {
                 

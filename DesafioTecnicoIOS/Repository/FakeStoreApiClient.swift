@@ -18,7 +18,14 @@ enum HTTPMethod {
     }
 }
 
-struct FakeStoreApiClient {
+protocol FakeStoreApiClientProtocol {
+    func getProducts() async throws -> [ProductResponse]
+    func getProductsBy(category: String) async throws -> [ProductResponse]
+    func getProductCategories() async throws -> [String]
+    func getProductDetails(productId: Int) async throws -> ProductResponse
+}
+
+struct FakeStoreApiClient: FakeStoreApiClientProtocol {
     let baseURL = "https://fakestoreapi.com/"
     
     func getProducts() async throws -> [ProductResponse] {

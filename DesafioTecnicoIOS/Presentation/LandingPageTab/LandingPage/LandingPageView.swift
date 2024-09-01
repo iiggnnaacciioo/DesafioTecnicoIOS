@@ -22,7 +22,11 @@ protocol LandingPageViewDelegate: AnyObject {
 class LandingPageView: UIView {
     //MARK: View Components
     let loadingView: UIActivityIndicatorView = UIBuilder.loadingView()
-        
+    
+    let topGradient: UIImageView = UIBuilder.imageView(image: UIImage(named: "gradient"))
+            
+    let bottomGradient: UIImageView = UIBuilder.imageView(image: UIImage(named: "gradient"))
+            
     let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
 
     //MARK: Properties
@@ -48,9 +52,13 @@ class LandingPageView: UIView {
         setupCollectionView()
 
         addSubview(collectionView)
+        addSubview(topGradient)
+        addSubview(bottomGradient)
         addSubview(loadingView)
 
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        topGradient.translatesAutoresizingMaskIntoConstraints = false
+        bottomGradient.translatesAutoresizingMaskIntoConstraints = false
         loadingView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
@@ -58,13 +66,31 @@ class LandingPageView: UIView {
             collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
-                        
+
+            topGradient.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            topGradient.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            topGradient.topAnchor.constraint(equalTo: self.collectionView.topAnchor),
+            topGradient.heightAnchor.constraint(equalToConstant: 10),
+
+            bottomGradient.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            bottomGradient.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            bottomGradient.bottomAnchor.constraint(equalTo: self.collectionView.bottomAnchor),
+            bottomGradient.heightAnchor.constraint(equalToConstant: 10),
+
             loadingView.centerYAnchor.constraint(equalTo: centerYAnchor),
             loadingView.centerXAnchor.constraint(equalTo: centerXAnchor),
         ])
         
         backgroundColor = .white
         collectionView.backgroundColor = .clear
+        
+        topGradient.contentMode = .scaleToFill
+        topGradient.alpha = 0.1
+        
+        bottomGradient.contentMode = .scaleToFill
+        bottomGradient.alpha = 0.1
+        bottomGradient.transform = CGAffineTransform(scaleX: 1, y: -1)
+
     }
     
     private func setupCollectionView() {

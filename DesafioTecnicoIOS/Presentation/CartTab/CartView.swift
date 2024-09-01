@@ -24,6 +24,8 @@ class CartView: UIView {
     //MARK: View Components
     let loadingView: UIActivityIndicatorView = UIBuilder.loadingView()
 
+    let topGradient: UIImageView = UIBuilder.imageView(image: UIImage(named: "gradient"))
+
     let tableView: UITableView = UITableView()
     
     let totalAmountView: CartTotalAmountView = CartTotalAmountView()
@@ -46,10 +48,12 @@ class CartView: UIView {
     
     func setupView() {
         addSubview(tableView)
+        addSubview(topGradient)
         addSubview(totalAmountView)
         addSubview(loadingView)
 
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        topGradient.translatesAutoresizingMaskIntoConstraints = false
         loadingView.translatesAutoresizingMaskIntoConstraints = false
         totalAmountView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -58,7 +62,12 @@ class CartView: UIView {
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             tableView.bottomAnchor.constraint(equalTo: totalAmountView.topAnchor, constant: 0),
-            
+
+            topGradient.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            topGradient.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            topGradient.topAnchor.constraint(equalTo: self.tableView.topAnchor),
+            topGradient.heightAnchor.constraint(equalToConstant: 10),
+
             totalAmountView.leadingAnchor.constraint(equalTo: leadingAnchor),
             totalAmountView.trailingAnchor.constraint(equalTo: trailingAnchor),
             totalAmountView.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -66,7 +75,10 @@ class CartView: UIView {
             loadingView.centerYAnchor.constraint(equalTo: centerYAnchor),
             loadingView.centerXAnchor.constraint(equalTo: centerXAnchor),
         ])
-
+        
+        topGradient.contentMode = .scaleToFill
+        topGradient.alpha = 0.1
+        
         tableView.backgroundColor = .white
         backgroundColor = .white
     }

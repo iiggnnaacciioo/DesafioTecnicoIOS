@@ -24,6 +24,6 @@ struct ProductModel: Hashable {
         self.highlightScore = product.rating.rate * Double(product.rating.count)
         self.rating = product.rating.rate
         self.imageURL = product.image
-        self.formattedPrice = CurrencyHelper.formatDollarToCLPesos(amount: product.price, exchangeRate: 900)
+        self.formattedPrice = CurrencyHelper.formatDollarToCLP(amount: product.price, exchangeRate: CurrencyHelper.dollarToCLPRate)
     }
 }

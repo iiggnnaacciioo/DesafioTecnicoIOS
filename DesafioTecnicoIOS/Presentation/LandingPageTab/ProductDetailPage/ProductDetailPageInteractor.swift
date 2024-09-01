@@ -17,15 +17,15 @@ protocol ProductDetailPageInteractorProtocol {
 class ProductDetailPageInteractor {
 	let presenter: ProductDetailPagePresenterProtocol
 
-	let worker: ProductDetailPageWorkerProtocol
+    let apiClient: FakeStoreApiClientProtocol
 
-    let localStorageWorker: LocalStorageWorkerProtocol
+    let localStorage: LocalStorageProtocol
 
-	init(presenter: ProductDetailPagePresenterProtocol, worker: ProductDetailPageWorkerProtocol,
-         localStorageWorker: LocalStorageWorkerProtocol) {
+	init(presenter: ProductDetailPagePresenterProtocol, apiClient: FakeStoreApiClientProtocol,
+         localStorage: LocalStorageProtocol) {
 		self.presenter = presenter
-        self.worker = worker
-        self.localStorageWorker = localStorageWorker
+        self.apiClient = apiClient
+        self.localStorage = localStorage
 	}
 }
 
@@ -33,7 +33,7 @@ extension ProductDetailPageInteractor: ProductDetailPageInteractorProtocol {
     func fetchProductDetails(productId: Int) {
         Task { @MainActor in
             do {
-                let productDetails = try await worker.getProductDetails(productId: productId)
+                let productDetails = try await apiClient.getProductDetails(productId: productId)
                 presenter.presentProductDetails(product: productDetails)
             } catch {
                 presenter.presentProductDetails(error: error)
@@ -43,7 +43,7 @@ extension ProductDetailPageInteractor: ProductDetailPageInteractorProtocol {
     
     func addToCart(productId: Int) {
         Task {  @MainActor in
-            await localStorageWorker.addOne(productId: productId)
+            await localStorage.addOne(productId: productId)
             presenter.presentAddedToCart()
         }
     }

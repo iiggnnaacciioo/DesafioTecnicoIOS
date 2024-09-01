@@ -7,14 +7,14 @@
 
 import Foundation
 
-protocol LocalStorageWorkerProtocol {
+protocol LocalStorageProtocol {
     func loadStoredCart() async -> [ProductPurchaseIntent]
     func addOne(productId: Int) async
     func removeOne(productId: Int) async
     func delete(productId: Int) async
 }
 
-actor LocalStorageWorker: LocalStorageWorkerProtocol {
+actor LocalStorage: LocalStorageProtocol {
     let purchaseIntentKey = "productPurchaseIntent"
     
     func loadStoredCart() async -> [ProductPurchaseIntent] {

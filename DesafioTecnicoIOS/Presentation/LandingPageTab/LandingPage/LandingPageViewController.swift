@@ -59,9 +59,9 @@ class LandingPageViewController: UIViewController {
     static var instance: LandingPageViewController {
         let vc = LandingPageViewController()
         let presenter = LandingPagePresenter(viewController: vc)
-        let worker = LandingPageWorker(apiClient: FakeStoreApiClient())
-        let localStorageWorker = LocalStorageWorker()
-        let interactor = LandingPageInteractor(presenter: presenter, worker: worker, localStorageWorker: localStorageWorker)
+        let localStorage = LocalStorage()
+        let apiClient = FakeStoreApiClient()
+        let interactor = LandingPageInteractor(presenter: presenter, apiClient: apiClient, localStorage: localStorage)
         vc.interactor = interactor
         return vc
     }

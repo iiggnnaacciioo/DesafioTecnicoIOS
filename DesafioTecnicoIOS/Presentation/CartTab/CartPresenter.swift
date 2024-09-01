@@ -40,7 +40,7 @@ extension CartPresenter: CartPresenterProtocol {
             }
         }
         
-        let priceCL = CurrencyHelper.formatDollarToCLPesos(amount: totalPrice, exchangeRate: 900)
+        let priceCL = CurrencyHelper.formatDollarToCLP(amount: totalPrice, exchangeRate: CurrencyHelper.dollarToCLPRate)
         let text = "Total Amount: \(priceCL) CLP"
 
         viewController?.show(cartProducts: cartProducts, totalAmount: text, animated: animated)

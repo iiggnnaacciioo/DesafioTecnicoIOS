@@ -69,11 +69,11 @@ class CartViewController: UIViewController {
     static func instance(closeAction: @escaping() -> ()) -> CartViewController {
         let vc = CartViewController(closeAction: closeAction)
         let presenter = CartPresenter(viewController: vc)
-        let localStorageWorker = LocalStorageWorker()
-        let worker = CartWorker(apiClient: FakeStoreApiClient())
+        let localStorage = LocalStorage()
+        let apiClient = FakeStoreApiClient()
         let interactor = CartInteractor(presenter: presenter,
-                                        worker: worker,
-                                        localStorage: localStorageWorker)
+                                        apiClient: apiClient,
+                                        localStorage: localStorage)
         vc.interactor = interactor
         return vc
     }

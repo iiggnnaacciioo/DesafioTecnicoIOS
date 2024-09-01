@@ -30,4 +30,13 @@ extension UIView {
         layer.shadowOffset = CGSizeMake(0, shadowSize / 6)
         layer.shadowRadius = shadowSize
     }
+    
+    func gradient(topColor: UIColor, bottomColor: UIColor) {
+        let gradient = CAGradientLayer()
+
+        gradient.frame = bounds
+        gradient.colors = [topColor.cgColor, bottomColor.cgColor]
+
+        layer.insertSublayer(gradient, at: 0)
+    }
 }

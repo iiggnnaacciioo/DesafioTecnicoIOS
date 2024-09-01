@@ -49,9 +49,9 @@ class ProductDetailPageViewController: UIViewController {
     static func instance(productId: Int, closeAction: @escaping() -> ()) -> ProductDetailPageViewController {
         let vc = ProductDetailPageViewController(productId: productId, closeAction: closeAction)
         let presenter = ProductDetailPagePresenter(viewController: vc)
-        let worker = ProductDetailPageWorker(apiClient: FakeStoreApiClient())
-        let localStorageWorker = LocalStorageWorker()
-        let interactor = ProductDetailPageInteractor(presenter: presenter, worker: worker, localStorageWorker: localStorageWorker)
+        let apiClient = FakeStoreApiClient()
+        let localStorage = LocalStorage()
+        let interactor = ProductDetailPageInteractor(presenter: presenter, apiClient: apiClient, localStorage: localStorage)
         vc.interactor = interactor
         return vc
     }

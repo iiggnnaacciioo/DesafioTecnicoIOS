@@ -17,17 +17,17 @@ protocol LandingPageInteractorProtocol {
 
 class LandingPageInteractor {
 	let presenter: LandingPagePresenterProtocol
+    
+    let apiClient: FakeStoreApiClientProtocol
 
-    let worker: LandingPageWorkerProtocol
-
-    let localStorageWorker: LocalStorageWorkerProtocol
+    let localStorage: LocalStorageProtocol
 
 	init(presenter: LandingPagePresenterProtocol, 
-         worker: LandingPageWorkerProtocol,
-         localStorageWorker: LocalStorageWorkerProtocol) {
-		self.presenter = presenter
-        self.worker = worker
-        self.localStorageWorker = localStorageWorker
+         apiClient: FakeStoreApiClientProtocol,
+         localStorage: LocalStorageProtocol) {
+        self.presenter = presenter
+        self.apiClient = apiClient
+        self.localStorage = localStorage
 	}
 }
 
@@ -37,9 +37,9 @@ extension LandingPageInteractor: LandingPageInteractorProtocol {
             do {
                 var products: [ProductResponse]
                 if let strongCategory = category {
-                    products = try await worker.getProductsBy(category: strongCategory)
+                    products = try await apiClient.getProductsBy(category: strongCategory)
                 } else {
-                    products = try await worker.getProducts()
+                    products = try await apiClient.getProducts()
                 }
                 presenter.present(products: products)
             } catch {
@@ -52,14 +52,14 @@ extension LandingPageInteractor: LandingPageInteractorProtocol {
     
     func addToCart(productId: Int) {
         Task {  @MainActor in
-            await localStorageWorker.addOne(productId: productId)
+            await localStorage.addOne(productId: productId)
             loadPurchaseIntents()
         }
     }
     
     func loadPurchaseIntents() {
         Task { @MainActor in
-            let purchaseIntents = await localStorageWorker.loadStoredCart()
+            let purchaseIntents = await localStorage.loadStoredCart()
             presenter.present(purchaseIntents: purchaseIntents)
         }
     }

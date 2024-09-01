@@ -16,6 +16,7 @@ class TabBarController: UITabBarController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.delegate = self
         setupView()
         setupNavigationBar()
     }
@@ -27,6 +28,7 @@ class TabBarController: UITabBarController {
         firstVC.tabBarItem.image = UIImage(systemName: "house")?.withBaselineOffset(fromBottom: 18)
 
         let secondVC = UIViewController()
+        secondVC.view.backgroundColor = .red
         secondVC.title = "Cart"
         secondVC.tabBarItem.tag = 1
         secondVC.tabBarItem.image = UIImage(systemName: "cart")?.withBaselineOffset(fromBottom: 18)
@@ -36,13 +38,14 @@ class TabBarController: UITabBarController {
 
         viewControllers = [firstVC, secondVC]
     }
-    
+        
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if item.tag == 1 {
             let vc = CartViewController.instance { [weak self] in
                 self?.selectedIndex = 0
             }
             navigationController?.pushViewController(vc, animated: true)
+            return
         }
     }
     
@@ -76,5 +79,12 @@ class TabBarController: UITabBarController {
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
         
+    }
+}
+
+extension TabBarController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        return false
+
     }
 }

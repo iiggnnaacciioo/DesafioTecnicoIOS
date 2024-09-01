@@ -47,8 +47,8 @@ class CategoriesViewController: UIViewController {
     static func instance(filterWithCategoriesAction: @escaping(_ category: String?) -> (), closeAction: @escaping() -> ()) -> CategoriesViewController {
         let vc = CategoriesViewController(filterWithCategoriesAction: filterWithCategoriesAction, closeAction: closeAction)
         let presenter = CategoriesPresenter(viewController: vc)
-        let worker = CategoriesWorker(apiClient: FakeStoreApiClient())
-        let interactor = CategoriesInteractor(presenter: presenter, worker: worker)
+        let apiClient = FakeStoreApiClient()
+        let interactor = CategoriesInteractor(presenter: presenter, apiClient: apiClient)
         vc.interactor = interactor
         return vc
     }

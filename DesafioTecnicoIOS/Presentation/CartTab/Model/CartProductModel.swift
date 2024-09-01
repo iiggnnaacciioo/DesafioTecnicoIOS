@@ -19,6 +19,6 @@ struct CartProductModel: Hashable {
         self.title = product.title
         self.quantity = quantity
         self.imageURL = product.image
-        self.formattedPrice = CurrencyHelper.formatDollarToCLPesos(amount: product.price, exchangeRate: 900)
+        self.formattedPrice = CurrencyHelper.formatDollarToCLP(amount: product.price, exchangeRate: CurrencyHelper.dollarToCLPRate)
     }
 }

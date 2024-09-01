@@ -24,9 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
         
-        let nav = NavigationController.instance
-            
-        window?.rootViewController = nav
+        window?.rootViewController = UINavigationController(rootViewController: TabBarController())
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

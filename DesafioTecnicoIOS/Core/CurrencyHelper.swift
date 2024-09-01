@@ -8,7 +8,9 @@
 import Foundation
 
 struct CurrencyHelper {
-    static func formatDollarToCLPesos(amount: Double, exchangeRate: Double) -> String {
+    static var dollarToCLPRate: Double = 900
+    
+    static func formatDollarToCLP(amount: Double, exchangeRate: Double) -> String {
         let amountInPesos = amount * exchangeRate
         let formatter = NumberFormatter()
         formatter.locale = Locale(identifier: "es_CL")

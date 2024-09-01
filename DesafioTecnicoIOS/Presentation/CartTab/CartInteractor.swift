@@ -19,23 +19,23 @@ protocol CartInteractorProtocol {
 class CartInteractor {
 	let presenter: CartPresenterProtocol
 
-	let worker: CartWorkerProtocol
+    let apiClient: FakeStoreApiClientProtocol
 
-    let localStorageWorker: LocalStorageWorkerProtocol
+    let localStorage: LocalStorageProtocol
     
     var productResponse: [ProductResponse] = []
 
-	init(presenter: CartPresenterProtocol, worker: CartWorkerProtocol, localStorage: LocalStorageWorkerProtocol) {
+	init(presenter: CartPresenterProtocol, apiClient: FakeStoreApiClientProtocol, localStorage: LocalStorageProtocol) {
 		self.presenter = presenter
-        self.worker = worker
-        self.localStorageWorker = localStorage
+        self.apiClient = apiClient
+        self.localStorage = localStorage
 	}
 }
 
 extension CartInteractor: CartInteractorProtocol {
     func loadStoredPurchases(animated: Bool) {
         Task { @MainActor in
-            let purchaseIntents = await localStorageWorker.loadStoredCart()
+            let purchaseIntents = await localStorage.loadStoredCart()
             let productIds: [Int] = purchaseIntents.map {
                 $0.productId
             }
@@ -44,7 +44,7 @@ extension CartInteractor: CartInteractorProtocol {
                 let products = try await withThrowingTaskGroup(of: ProductResponse.self, returning: [ProductResponse].self) { taskGroup in
                     for productId in productIds {
                         taskGroup.addTask {
-                            try await self.worker.getProductDetails(productId: productId)
+                            try await self.apiClient.getProductDetails(productId: productId)
                         }
                     }
 
@@ -65,23 +65,23 @@ extension CartInteractor: CartInteractorProtocol {
     
     func addOneToCart(productId: Int) {
         Task { @MainActor in
-            await localStorageWorker.addOne(productId: productId)
-            let purchaseIntents = await localStorageWorker.loadStoredCart()
+            await localStorage.addOne(productId: productId)
+            let purchaseIntents = await localStorage.loadStoredCart()
             presenter.present(products: productResponse, purchaseIntents: purchaseIntents, animated: false)
         }
     }
     
     func removeOneFromCart(productId: Int) {
         Task {  @MainActor in
-            await localStorageWorker.removeOne(productId: productId)
-            let purchaseIntents = await localStorageWorker.loadStoredCart()
+            await localStorage.removeOne(productId: productId)
+            let purchaseIntents = await localStorage.loadStoredCart()
             presenter.present(products: productResponse, purchaseIntents: purchaseIntents, animated: false)
         }
     }
     
     func delete(productId: Int) {
         Task {  @MainActor in
-            await localStorageWorker.delete(productId: productId)
+            await localStorage.delete(productId: productId)
             loadStoredPurchases(animated: true)
         }
     }

@@ -136,10 +136,11 @@ class ProductDetailPageView: UIView {
     private func animateIntro() {
         self.layoutIfNeeded()
 
+        let darkOverlayColor = UIColor(red: 0.5, green: 0.5, blue: 0.55, alpha: 0.5)
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.85, initialSpringVelocity: 0.01, animations: { [weak self] in
             self?.topContainerConstraint.constant = 0
             self?.bottomContainerConstraint.constant = 0
-            self?.backgroundColor = UIColor.darkGray.withAlphaComponent(0.4)
+            self?.backgroundColor = darkOverlayColor
             self?.layoutIfNeeded()
         })
     }
