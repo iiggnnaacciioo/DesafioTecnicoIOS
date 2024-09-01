@@ -16,23 +16,21 @@ class TabBarController: UITabBarController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupView()
         setupNavigationBar()
     }
     
-    private func setupNavigationBar() {
-        //title = "My super App"
-    }
-
     private func setupViewControllers() {
-        let firstVC = LandingPageViewController()
+        let firstVC = LandingPageViewController.instance
         firstVC.title = "Home"
         firstVC.tabBarItem.tag = 0
-        firstVC.tabBarItem.image = UIImage(systemName: "house")
+        firstVC.tabBarItem.image = UIImage(systemName: "house")?.withBaselineOffset(fromBottom: 18)
 
         let secondVC = UIViewController()
         secondVC.title = "Cart"
         secondVC.tabBarItem.tag = 1
-        secondVC.tabBarItem.image = UIImage(systemName: "cart")
+        secondVC.tabBarItem.image = UIImage(systemName: "cart")?.withBaselineOffset(fromBottom: 18)
+
         secondVC.tabBarItem.badgeValue = "5"  // Adding a badge with number 5
         secondVC.tabBarItem.badgeColor = UIColor.systemRed  // Optional: Customize badge color
 
@@ -46,5 +44,37 @@ class TabBarController: UITabBarController {
             }
             navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    
+    private func setupView() {
+        view.backgroundColor = .white
+        
+        let itemAppearance = UITabBarItemAppearance()
+        itemAppearance.normal.badgePositionAdjustment.vertical = 7
+        itemAppearance.normal.badgePositionAdjustment.horizontal = 4
+        itemAppearance.normal.titlePositionAdjustment.vertical = 10
+           
+        let appearance = UITabBarAppearance()
+        appearance.stackedLayoutAppearance = itemAppearance
+        appearance.inlineLayoutAppearance = itemAppearance
+        appearance.compactInlineLayoutAppearance = itemAppearance
+        appearance.backgroundColor = .white
+
+        tabBar.standardAppearance = appearance
+    }
+    
+    private func setupNavigationBar() {
+        let appearance = UINavigationBarAppearance()
+        let titleColor = UIColor.darkText
+        appearance.titleTextAttributes = [.foregroundColor: titleColor]
+        appearance.largeTitleTextAttributes = [.foregroundColor: titleColor]
+        appearance.backgroundColor = UIColor.white
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+        
     }
 }
