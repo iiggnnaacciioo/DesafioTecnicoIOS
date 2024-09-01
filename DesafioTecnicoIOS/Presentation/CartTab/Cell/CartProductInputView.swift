@@ -9,7 +9,7 @@ import UIKit
 
 class CartProductInputView: UIView {
     //MARK: View components
-    let stackView: UIStackView = UIBuilder.stackView(axis: .vertical, spacing: 16, alignment: .center)
+    let stackView: UIStackView = UIBuilder.stackView(axis: .vertical, spacing: 12, alignment: .center)
     
     let removeButton: UIButton = UIBuilder.roundedTextClearButton(text: "Quitar")
     

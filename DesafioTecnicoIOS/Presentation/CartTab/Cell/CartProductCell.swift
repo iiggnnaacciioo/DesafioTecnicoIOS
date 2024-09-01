@@ -13,13 +13,13 @@ class CartProductCell: UITableViewCell {
     }
     
     //MARK: View components
-    let stackView: UIStackView = UIBuilder.stackView(axis: .horizontal, spacing: 0, alignment: .top, distribution: .fill)
+    let stackView: UIStackView = UIBuilder.stackView(axis: .horizontal, spacing: 0, alignment: .fill, distribution: .fillEqually)
 
     let productImageContainer: UIView = UIBuilder.view(color: .clear)
 
     let productImage: UIImageView = UIBuilder.imageView(image: nil)
         
-    let infoStackView: UIStackView = UIBuilder.stackView(axis: .vertical, spacing: 8, alignment: .fill)
+    let infoStackView: UIStackView = UIBuilder.stackView(axis: .vertical, spacing: 12, alignment: .fill, distribution: .fill)
         
     let productLabel: UILabel = UIBuilder.multilineLabel("", style: .headline, weight: .medium, alignment: .left, numberOfLines: 5)
 
@@ -104,22 +104,23 @@ class CartProductCell: UITableViewCell {
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -18),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 4),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -4),
-                        
-            productImageContainer.heightAnchor.constraint(equalToConstant: 100),
-            
-            productImage.heightAnchor.constraint(lessThanOrEqualTo: productImageContainer.heightAnchor, constant: -16),
-            productImage.widthAnchor.constraint(lessThanOrEqualTo: productImageContainer.widthAnchor, constant: -16),
-            productImage.centerXAnchor.constraint(equalTo: productImageContainer.centerXAnchor),
-            productImage.centerYAnchor.constraint(equalTo: productImageContainer.centerYAnchor),
 
-            infoStackView.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.5, constant: -16),
+            productImage.topAnchor.constraint(greaterThanOrEqualTo: productImageContainer.topAnchor, constant: 24),
+            productImage.bottomAnchor.constraint(lessThanOrEqualTo: productImageContainer.bottomAnchor, constant: -24),
+            productImage.leadingAnchor.constraint(equalTo: productImageContainer.leadingAnchor, constant: 24),
+            productImage.trailingAnchor.constraint(equalTo: productImageContainer.trailingAnchor, constant: -24),
 
             separator.heightAnchor.constraint(equalToConstant: 1),
-            separator.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 8),
-            separator.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -8),
+            separator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            separator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
             separator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ])
         
+        productImage.setContentHuggingPriority(.defaultLow, for: .vertical)
+        productImage.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        infoStackView.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        infoStackView.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+
         contentView.backgroundColor = .white
     }
 }
