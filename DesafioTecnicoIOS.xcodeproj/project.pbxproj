@@ -14,6 +14,14 @@
 		DF7DDE5C2C849D9F00D53A4B /* DesafioTecnicoIOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF7DDE5A2C849D9F00D53A4B /* DesafioTecnicoIOS.xcdatamodeld */; };
 		DF7DDE5E2C849DA100D53A4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF7DDE5D2C849DA100D53A4B /* Assets.xcassets */; };
 		DF7DDE612C849DA100D53A4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF7DDE5F2C849DA100D53A4B /* LaunchScreen.storyboard */; };
+		DF7DDE6A2C849F6A00D53A4B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7DDE692C849F6900D53A4B /* TabBarController.swift */; };
+		DF7DDE852C84A3B200D53A4B /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7DDE802C84A3B200D53A4B /* CartViewController.swift */; };
+		DF7DDE862C84A3B200D53A4B /* CartWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7DDE812C84A3B200D53A4B /* CartWorker.swift */; };
+		DF7DDE872C84A3B200D53A4B /* CartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7DDE822C84A3B200D53A4B /* CartPresenter.swift */; };
+		DF7DDE882C84A3B200D53A4B /* CartInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7DDE832C84A3B200D53A4B /* CartInteractor.swift */; };
+		DF7DDE892C84A3B200D53A4B /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7DDE842C84A3B200D53A4B /* CartView.swift */; };
+		DF7DDE8C2C84A72800D53A4B /* LandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7DDE8B2C84A72800D53A4B /* LandingPageViewController.swift */; };
+		DF7DDE8F2C84AA4000D53A4B /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7DDE8E2C84AA4000D53A4B /* NavigationBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +34,14 @@
 		DF7DDE5D2C849DA100D53A4B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF7DDE602C849DA100D53A4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DF7DDE622C849DA100D53A4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DF7DDE692C849F6900D53A4B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		DF7DDE802C84A3B200D53A4B /* CartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
+		DF7DDE812C84A3B200D53A4B /* CartWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartWorker.swift; sourceTree = "<group>"; };
+		DF7DDE822C84A3B200D53A4B /* CartPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartPresenter.swift; sourceTree = "<group>"; };
+		DF7DDE832C84A3B200D53A4B /* CartInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartInteractor.swift; sourceTree = "<group>"; };
+		DF7DDE842C84A3B200D53A4B /* CartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
+		DF7DDE8B2C84A72800D53A4B /* LandingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPageViewController.swift; sourceTree = "<group>"; };
+		DF7DDE8E2C84AA4000D53A4B /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +74,9 @@
 		DF7DDE502C849D9F00D53A4B /* DesafioTecnicoIOS */ = {
 			isa = PBXGroup;
 			children = (
+				DF7DDE8D2C84AA0200D53A4B /* Navigation */,
+				DF7DDE8A2C84A71900D53A4B /* LandingPage */,
+				DF7DDE7F2C84A3B200D53A4B /* Cart */,
 				DF7DDE512C849D9F00D53A4B /* AppDelegate.swift */,
 				DF7DDE532C849D9F00D53A4B /* SceneDelegate.swift */,
 				DF7DDE552C849D9F00D53A4B /* ViewController.swift */,
@@ -68,6 +87,35 @@
 				DF7DDE5A2C849D9F00D53A4B /* DesafioTecnicoIOS.xcdatamodeld */,
 			);
 			path = DesafioTecnicoIOS;
+			sourceTree = "<group>";
+		};
+		DF7DDE7F2C84A3B200D53A4B /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+				DF7DDE802C84A3B200D53A4B /* CartViewController.swift */,
+				DF7DDE812C84A3B200D53A4B /* CartWorker.swift */,
+				DF7DDE822C84A3B200D53A4B /* CartPresenter.swift */,
+				DF7DDE832C84A3B200D53A4B /* CartInteractor.swift */,
+				DF7DDE842C84A3B200D53A4B /* CartView.swift */,
+			);
+			path = Cart;
+			sourceTree = "<group>";
+		};
+		DF7DDE8A2C84A71900D53A4B /* LandingPage */ = {
+			isa = PBXGroup;
+			children = (
+				DF7DDE8B2C84A72800D53A4B /* LandingPageViewController.swift */,
+			);
+			path = LandingPage;
+			sourceTree = "<group>";
+		};
+		DF7DDE8D2C84AA0200D53A4B /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				DF7DDE692C849F6900D53A4B /* TabBarController.swift */,
+				DF7DDE8E2C84AA4000D53A4B /* NavigationBar.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,10 +189,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF7DDE892C84A3B200D53A4B /* CartView.swift in Sources */,
+				DF7DDE872C84A3B200D53A4B /* CartPresenter.swift in Sources */,
 				DF7DDE562C849D9F00D53A4B /* ViewController.swift in Sources */,
+				DF7DDE862C84A3B200D53A4B /* CartWorker.swift in Sources */,
 				DF7DDE5C2C849D9F00D53A4B /* DesafioTecnicoIOS.xcdatamodeld in Sources */,
 				DF7DDE522C849D9F00D53A4B /* AppDelegate.swift in Sources */,
+				DF7DDE6A2C849F6A00D53A4B /* TabBarController.swift in Sources */,
+				DF7DDE852C84A3B200D53A4B /* CartViewController.swift in Sources */,
 				DF7DDE542C849D9F00D53A4B /* SceneDelegate.swift in Sources */,
+				DF7DDE882C84A3B200D53A4B /* CartInteractor.swift in Sources */,
+				DF7DDE8C2C84A72800D53A4B /* LandingPageViewController.swift in Sources */,
+				DF7DDE8F2C84AA4000D53A4B /* NavigationBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

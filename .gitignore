@@ -1,0 +1,20 @@
+# Xcode
+#
+DerivedData/
+*.xcworkspace
+xcuserdata/
+*.xcuserstate
+
+
+# macOS
+#
+.DS_Store
+
+# Archives and Symbols
+#
+*.xcarchive
+*.dSYM.zip
+
+# Temporary files
+*.swp
+*.lock
