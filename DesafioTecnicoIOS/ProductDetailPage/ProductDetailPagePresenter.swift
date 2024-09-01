@@ -12,6 +12,7 @@ import Foundation
 protocol ProductDetailPagePresenterProtocol {
     func presentProductDetails(product: ProductResponse)
     func presentProductDetails(error: Error)
+    func presentAddedToCart()
 }
 
 class ProductDetailPagePresenter {
@@ -30,5 +31,9 @@ extension ProductDetailPagePresenter: ProductDetailPagePresenterProtocol {
     
     func presentProductDetails(error: Error) {
         viewController?.showProductDetails(errorMessage: error.localizedDescription)
+    }
+    
+    func presentAddedToCart() {
+        viewController?.showAddedToCart()
     }
 }

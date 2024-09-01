@@ -31,8 +31,8 @@ class TabBarController: UITabBarController {
         secondVC.tabBarItem.tag = 1
         secondVC.tabBarItem.image = UIImage(systemName: "cart")?.withBaselineOffset(fromBottom: 18)
 
-        secondVC.tabBarItem.badgeValue = "5"  // Adding a badge with number 5
-        secondVC.tabBarItem.badgeColor = UIColor.systemRed  // Optional: Customize badge color
+        secondVC.tabBarItem.badgeValue = nil
+        secondVC.tabBarItem.badgeColor = UIColor.systemRed
 
         viewControllers = [firstVC, secondVC]
     }

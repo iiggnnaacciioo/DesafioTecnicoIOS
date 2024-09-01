@@ -12,11 +12,10 @@ import UIKit
 protocol LandingPageViewProtocol: UIView {
     func show(highlightedItem: ProductModel, items: [ProductModel])
     func show(isLoading: Bool)
-    func blur(on: Bool)
 }
 
 protocol LandingPageViewDelegate: AnyObject {
-    func show(selectedProductId: Int)
+    func showProductDetail(selectedProductId: Int)
     func addToCart(selectedProductId: Int)
 }
 
@@ -25,8 +24,6 @@ class LandingPageView: UIView {
     let loadingView: UIActivityIndicatorView = UIBuilder.loadingView()
         
     let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
-        
-    var blurView: UIView?
 
     //MARK: Properties
     lazy var dataSource: UICollectionViewDiffableDataSource = makeDataSource()
@@ -95,7 +92,7 @@ class LandingPageView: UIView {
             cell?.setup(title: model.title,
                         price: model.formattedPrice,
                         imageURL: model.imageURL) { [weak self] in
-                self?.delegate?.show(selectedProductId: model.id)
+                self?.delegate?.showProductDetail(selectedProductId: model.id)
             } addProductAction: { [weak self] in
                 self?.delegate?.addToCart(selectedProductId: model.id)
             }
@@ -141,18 +138,6 @@ extension LandingPageView: LandingPageViewProtocol {
             loadingView.startAnimating()
         } else {
             loadingView.stopAnimating()
-        }
-    }
-    
-    func blur(on: Bool) {
-        if on {
-            let bView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffect.Style.light))
-            bView.frame = bounds
-            addSubview(bView)
-            blurView = bView
-        } else {
-            blurView?.removeFromSuperview()
-            blurView = nil
         }
     }
 }

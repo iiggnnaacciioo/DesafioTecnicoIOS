@@ -10,7 +10,8 @@
 import Foundation
 
 protocol CartPresenterProtocol {
-
+    func present(products: [ProductResponse], purchaseIntents: [ProductPurchaseIntent], animated: Bool)
+    func present(error: URLError)
 }
 
 class CartPresenter {
@@ -22,5 +23,25 @@ class CartPresenter {
 }
 
 extension CartPresenter: CartPresenterProtocol {
+    func present(products: [ProductResponse], purchaseIntents: [ProductPurchaseIntent], animated: Bool) {
+        print("eraser me now \(purchaseIntents)")
 
+        var cartProducts: [CartProductModel] = []
+        
+        let productDict = Dictionary(uniqueKeysWithValues: products.map { ($0.id, $0) })
+        
+        // Map purchaseIntents to CartProductModel
+        for intent in purchaseIntents {
+            if let product = productDict[intent.productId] {
+                let cartProduct = CartProductModel(product: product, quantity: intent.quantity)
+                cartProducts.append(cartProduct)
+            }
+        }
+
+        viewController?.show(cartProducts: cartProducts, animated: animated)
+    }
+    
+    func present(error: URLError) {
+        viewController?.showError(message: error.localizedDescription)
+    }
 }

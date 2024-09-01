@@ -11,17 +11,23 @@ import Foundation
 
 protocol LandingPageInteractorProtocol {
     func fetchProducts(category: String?)
+    func loadPurchaseIntents()
     func addToCart(productId: Int)
 }
 
 class LandingPageInteractor {
 	let presenter: LandingPagePresenterProtocol
 
-	let worker: LandingPageWorkerProtocol
+    let worker: LandingPageWorkerProtocol
 
-	init(presenter: LandingPagePresenterProtocol, worker: LandingPageWorkerProtocol) {
+    let localStorageWorker: LocalStorageWorkerProtocol
+
+	init(presenter: LandingPagePresenterProtocol, 
+         worker: LandingPageWorkerProtocol,
+         localStorageWorker: LocalStorageWorkerProtocol) {
 		self.presenter = presenter
-		self.worker = worker
+        self.worker = worker
+        self.localStorageWorker = localStorageWorker
 	}
 }
 
@@ -45,6 +51,16 @@ extension LandingPageInteractor: LandingPageInteractorProtocol {
     }
     
     func addToCart(productId: Int) {
-        print("addToCart productId: \(productId)")
+        Task {  @MainActor in
+            await localStorageWorker.addOne(productId: productId)
+            loadPurchaseIntents()
+        }
+    }
+    
+    func loadPurchaseIntents() {
+        Task { @MainActor in
+            let purchaseIntents = await localStorageWorker.loadStoredCart()
+            presenter.present(purchaseIntents: purchaseIntents)
+        }
     }
 }

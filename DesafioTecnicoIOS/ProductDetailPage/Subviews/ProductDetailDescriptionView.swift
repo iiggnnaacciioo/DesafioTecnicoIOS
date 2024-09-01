@@ -29,10 +29,15 @@ class ProductDetailDescriptionView: UIStackView {
     
     let addButton: UIButton =  UIBuilder.iconButton(systemName: "plus.circle", iconSize: 36)
 
+    //MARK: Properties
+    let addProductAction: () -> ()
+    
     //MARK: Life cycle
-    init() {
+    init(addProductAction: @escaping() -> ()) {
+        self.addProductAction = addProductAction
         super.init(frame: .zero)
         setupView()
+        setupActions()
     }
     
     required init(coder: NSCoder) {
@@ -47,6 +52,11 @@ class ProductDetailDescriptionView: UIStackView {
         productImage.loadImage(imageURL: imageURL)
         
         ratingStars.setup(rating: rating)
+    }
+    
+    //MARK: Actions
+    @objc func addButtonWasTapped() {
+        addProductAction()
     }
     
     private func setupView() {
@@ -98,5 +108,9 @@ class ProductDetailDescriptionView: UIStackView {
         priceLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
 
         productImage.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+    }
+    
+    func setupActions() {
+        addButton.addTarget(self, action: #selector(addButtonWasTapped), for: .touchUpInside)
     }
 }

@@ -10,11 +10,17 @@
 import Foundation
 
 protocol CartWorkerProtocol {
-	func getSomething(onSuccess: @escaping ()  -> (), onError: @escaping () -> ())
+    func getProductDetails(productId: Int) async throws -> ProductResponse
 }
 
 class CartWorker: CartWorkerProtocol {
-	func getSomething(onSuccess: @escaping() -> (), onError: @escaping() -> ()) {
-
-	}
+    let apiClient: FakeStoreApiClient
+    
+    init(apiClient: FakeStoreApiClient) {
+        self.apiClient = apiClient
+    }
+    
+    func getProductDetails(productId: Int) async throws -> ProductResponse {
+        try await apiClient.getProductDetails(productId: productId)
+    }
 }

@@ -12,6 +12,7 @@ import UIKit
 protocol ProductDetailPageViewControllerProtocol: AnyObject {
     func showProductDetails(product: ProductModel)
     func showProductDetails(errorMessage: String)
+    func showAddedToCart()
 }
 
 class ProductDetailPageViewController: UIViewController {
@@ -49,7 +50,8 @@ class ProductDetailPageViewController: UIViewController {
         let vc = ProductDetailPageViewController(productId: productId, closeAction: closeAction)
         let presenter = ProductDetailPagePresenter(viewController: vc)
         let worker = ProductDetailPageWorker(apiClient: FakeStoreApiClient())
-        let interactor = ProductDetailPageInteractor(presenter: presenter, worker: worker)
+        let localStorageWorker = LocalStorageWorker()
+        let interactor = ProductDetailPageInteractor(presenter: presenter, worker: worker, localStorageWorker: localStorageWorker)
         vc.interactor = interactor
         return vc
     }
@@ -61,7 +63,16 @@ extension ProductDetailPageViewController: ProductDetailPageViewControllerProtoc
     }
     
     func showProductDetails(errorMessage: String) {
-        
+        let alert = UIAlertController(title: nil, message: errorMessage, preferredStyle: .alert)
+        alert.overrideUserInterfaceStyle = .light
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { [weak self] _ in
+            self?.close()
+        }))
+        present(alert, animated: true)
+    }
+    
+    func showAddedToCart() {
+        productDetailPageView?.animateOutro()
     }
 }
 
@@ -71,5 +82,9 @@ extension ProductDetailPageViewController: ProductDetailPageViewDelegate {
         removeFromParent()
         productDetailPageView?.removeFromSuperview()
         didMove(toParent: nil)
+    }
+    
+    func addProductToCart() {
+        interactor?.addToCart(productId: productId)
     }
 }

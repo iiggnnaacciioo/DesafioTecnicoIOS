@@ -11,10 +11,12 @@ import UIKit
 
 protocol ProductDetailPageViewProtocol: UIView {
     func show(product: ProductModel)
+    func animateOutro()
 }
 
 protocol ProductDetailPageViewDelegate: AnyObject {
     func close()
+    func addProductToCart()
 }
 
 class ProductDetailPageView: UIView {
@@ -29,7 +31,9 @@ class ProductDetailPageView: UIView {
     
     let closeButton: UIButton =  UIBuilder.iconButton(systemName: "xmark", iconSize: 16)
     
-    let productDescription: ProductDetailDescriptionView = ProductDetailDescriptionView()
+    lazy var productDescription: ProductDetailDescriptionView = ProductDetailDescriptionView { [weak self] in
+        self?.delegate?.addProductToCart()
+    }
 
     //MARK: Properties
     var topContainerConstraint: NSLayoutConstraint = NSLayoutConstraint()
@@ -115,6 +119,10 @@ class ProductDetailPageView: UIView {
         
     private func setupActions() {
         closeButton.addTarget(self, action: #selector(closeButtonWasTapped), for: .touchUpInside)
+        
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(closeButtonWasTapped))
+        swipeGesture.direction = .down
+        self.addGestureRecognizer(swipeGesture)
     }
     
     private func show(isLoading: Bool) {
@@ -134,20 +142,6 @@ class ProductDetailPageView: UIView {
             self?.backgroundColor = UIColor.darkGray.withAlphaComponent(0.4)
             self?.layoutIfNeeded()
         })
-    }
-    
-    private func animateOutro() {
-        self.layoutIfNeeded()
-        let containerHeight = container.bounds.height
-
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.85, initialSpringVelocity: 0.01) { [weak self] in
-            self?.topContainerConstraint.constant = containerHeight
-            self?.bottomContainerConstraint.constant = containerHeight
-            self?.backgroundColor = UIColor.darkGray.withAlphaComponent(0)
-            self?.layoutIfNeeded()
-        } completion: { [weak self] _ in
-            self?.delegate?.close()
-        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -176,6 +170,20 @@ extension ProductDetailPageView: ProductDetailPageViewProtocol {
         
         DispatchQueue.main.async { [weak self] in
             self?.animateIntro()
+        }
+    }
+    
+    func animateOutro() {
+        self.layoutIfNeeded()
+        let containerHeight = container.bounds.height
+
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.85, initialSpringVelocity: 0.01) { [weak self] in
+            self?.topContainerConstraint.constant = containerHeight
+            self?.bottomContainerConstraint.constant = containerHeight
+            self?.backgroundColor = UIColor.darkGray.withAlphaComponent(0)
+            self?.layoutIfNeeded()
+        } completion: { [weak self] _ in
+            self?.delegate?.close()
         }
     }
 }

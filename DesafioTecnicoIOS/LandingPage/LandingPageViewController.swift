@@ -12,9 +12,13 @@ import UIKit
 protocol LandingPageViewControllerProtocol: AnyObject {
     func show(items: [ProductModel], highlightedItem: ProductModel)
     func showError(message: String)
+    func updateCartItem(quantity: String?)
 }
 
 class LandingPageViewController: UIViewController {
+    
+    var blurView: UIView?
+
 	var landingPageView: LandingPageViewProtocol?
 
 	var interactor: LandingPageInteractorProtocol?
@@ -44,6 +48,7 @@ class LandingPageViewController: UIViewController {
         parent?.title = "My super App"
         parent?.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .plain, target: self, action: #selector(showCategories))
         navigationController?.navigationBar.prefersLargeTitles = true
+        interactor?.loadPurchaseIntents()
     }
 
     private func fetchProducts(category: String?) {
@@ -55,17 +60,18 @@ class LandingPageViewController: UIViewController {
         let vc = LandingPageViewController()
         let presenter = LandingPagePresenter(viewController: vc)
         let worker = LandingPageWorker(apiClient: FakeStoreApiClient())
-        let interactor = LandingPageInteractor(presenter: presenter, worker: worker)
+        let localStorageWorker = LocalStorageWorker()
+        let interactor = LandingPageInteractor(presenter: presenter, worker: worker, localStorageWorker: localStorageWorker)
         vc.interactor = interactor
         return vc
     }
     
     @objc func showCategories() {
         let vc = CategoriesViewController.instance { [weak self] category in
-            self?.landingPageView?.blur(on: false)
+            self?.blur(on: false)
             self?.fetchProducts(category: category)
         } closeAction: { [weak self] in
-            self?.landingPageView?.blur(on: false)
+            self?.blur(on: false)
         }
         
         guard let navigationController = navigationController else {
@@ -75,7 +81,23 @@ class LandingPageViewController: UIViewController {
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .overFullScreen
         navigationController.present(vc, animated: true)
-        landingPageView?.blur(on: true)
+        blur(on: true)
+    }
+    
+    private func blur(on: Bool) {
+        guard let navigationController = navigationController else {
+            return
+        }
+
+        if on {
+            let bView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffect.Style.light))
+            bView.frame = navigationController.view.bounds
+            navigationController.view.addSubview(bView)
+            blurView = bView
+        } else {
+            blurView?.removeFromSuperview()
+            blurView = nil
+        }
     }
 }
 
@@ -90,16 +112,27 @@ extension LandingPageViewController: LandingPageViewControllerProtocol {
         landingPageView?.show(isLoading: false)
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alert.overrideUserInterfaceStyle = .light
-        alert.addAction(UIAlertAction(title: "Ok", style: .destructive))
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
         present(alert, animated: true)
+    }
+    
+    func updateCartItem(quantity: String?) {
+        guard let tabBarController,
+              let cartItem = tabBarController.tabBar.items?.first(where: {
+                    $0.tag == 1
+                }) else {
+            return
+        }
+        
+        cartItem.badgeValue = quantity
     }
 }
 
 //MARK: LandingPageViewDelegate
 extension LandingPageViewController: LandingPageViewDelegate {
-    func show(selectedProductId: Int) {
-        let vc = ProductDetailPageViewController.instance(productId: selectedProductId) {
-            
+    func showProductDetail(selectedProductId: Int) {
+        let vc = ProductDetailPageViewController.instance(productId: selectedProductId) { [weak self] in
+            self?.interactor?.loadPurchaseIntents()
         }
         guard let navigationController = navigationController else {
             return

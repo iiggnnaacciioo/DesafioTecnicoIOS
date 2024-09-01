@@ -12,6 +12,7 @@ import Foundation
 protocol LandingPagePresenterProtocol {
     func present(products: [ProductResponse])
     func present(error: URLError)
+    func present(purchaseIntents: [ProductPurchaseIntent])
 }
 
 class LandingPagePresenter {
@@ -38,6 +39,12 @@ extension LandingPagePresenter: LandingPagePresenterProtocol {
         let highlightedItem = items.removeFirst()
         
         viewController?.show(items: items, highlightedItem: highlightedItem)
+    }
+    
+    func present(purchaseIntents: [ProductPurchaseIntent]) {
+        let totalQuantity = purchaseIntents.reduce(0) { $0 + $1.quantity }
+        let quantityString = totalQuantity == 0 ? nil : "\(totalQuantity)"
+        viewController?.updateCartItem(quantity: quantityString)
     }
     
     func present(error: URLError) {

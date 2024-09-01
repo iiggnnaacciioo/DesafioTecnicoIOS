@@ -57,6 +57,17 @@ struct UIBuilder {
         return b
     }
     
+    static func roundedTextButton(text: String) -> UIButton {
+        let b = UIButton(frame: .zero)
+        b.setTitle(text, for: .normal)
+        b.setTitleColor(.darkText, for: .normal)
+        b.setTitleColor(.darkText.withAlphaComponent(0.6), for: .highlighted)
+        b.layer.cornerRadius = 8
+        b.layer.borderWidth = 1
+        b.layer.borderColor = UIColor.systemBlue.cgColor
+        return b
+    }
+    
     static func loadingView() -> UIActivityIndicatorView {
         let l = UIActivityIndicatorView(style: .large)
         l.color = .gray
