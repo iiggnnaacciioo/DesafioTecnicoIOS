@@ -10,7 +10,7 @@
 import UIKit
 
 protocol CartViewControllerProtocol: AnyObject {
-    func show(cartProducts: [CartProductModel], animated: Bool)
+    func show(cartProducts: [CartProductModel], totalAmount: String, animated: Bool)
     func showError(message: String)
 }
 
@@ -80,9 +80,9 @@ class CartViewController: UIViewController {
 }
 
 extension CartViewController: CartViewControllerProtocol {
-    func show(cartProducts: [CartProductModel], animated: Bool) {
+    func show(cartProducts: [CartProductModel], totalAmount: String, animated: Bool) {
         cartView?.show(isLoading: false)
-        cartView?.show(cartProducts: cartProducts, animated: animated)
+        cartView?.show(cartProducts: cartProducts, totalAmount: totalAmount, animated: animated)
     }
     
     func showError(message: String) {

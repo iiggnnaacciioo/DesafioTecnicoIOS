@@ -23,7 +23,7 @@ class CartProductCell: UITableViewCell {
         
     let productLabel: UILabel = UIBuilder.multilineLabel("", style: .headline, weight: .medium, alignment: .left, numberOfLines: 5)
 
-    let priceLabel: UILabel = UIBuilder.singleLineLabel(size: 14, weight: .regular)
+    let priceLabel: UILabel = UIBuilder.singleLineLabel("", size: 14, weight: .regular)
     
     let productInputView: CartProductInputView = CartProductInputView()
 

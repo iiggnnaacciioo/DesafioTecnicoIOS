@@ -19,7 +19,7 @@ class ProductDetailDescriptionView: UIStackView {
 
     let priceLabelContainer: UIView = UIBuilder.view(color: .clear)
 
-    let priceLabel = UIBuilder.singleLineLabel(size: 16, weight: .semibold, alignment: .right)
+    let priceLabel = UIBuilder.singleLineLabel("", size: 16, weight: .semibold, alignment: .right)
 
     let descriptionLabel = UIBuilder.multilineLabel("-", style: .subheadline, weight: .regular, alignment: .left, numberOfLines: 0)
     

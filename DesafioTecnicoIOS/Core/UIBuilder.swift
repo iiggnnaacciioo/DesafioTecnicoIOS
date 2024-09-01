@@ -19,10 +19,11 @@ struct UIBuilder {
         return l
     }
     
-    static func singleLineLabel(size: CGFloat, weight: UIFont.Weight, alignment: NSTextAlignment = .left) -> UILabel {
+    static func singleLineLabel(_ text: String, size: CGFloat, weight: UIFont.Weight, alignment: NSTextAlignment = .left) -> UILabel {
         let l = UILabel()
         l.font = UIFont.systemFont(ofSize: size, weight: weight)
         l.textColor = .darkText
+        l.text = text
         l.numberOfLines = 1
         l.textAlignment = alignment
         return l
@@ -57,7 +58,7 @@ struct UIBuilder {
         return b
     }
     
-    static func roundedTextButton(text: String) -> UIButton {
+    static func roundedTextClearButton(text: String) -> UIButton {
         let b = UIButton(frame: .zero)
         b.setTitle(text, for: .normal)
         b.setTitleColor(.darkText, for: .normal)
@@ -68,6 +69,16 @@ struct UIBuilder {
         return b
     }
     
+    static func roundedTextFilledButton(text: String) -> UIButton {
+        let b = UIButton(frame: .zero)
+        b.setTitle(text, for: .normal)
+        b.setTitleColor(.white, for: .normal)
+        b.setTitleColor(.white.withAlphaComponent(0.6), for: .highlighted)
+        b.layer.cornerRadius = 8
+        b.backgroundColor = UIColor.systemBlue
+        return b
+    }
+
     static func loadingView() -> UIActivityIndicatorView {
         let l = UIActivityIndicatorView(style: .large)
         l.color = .gray

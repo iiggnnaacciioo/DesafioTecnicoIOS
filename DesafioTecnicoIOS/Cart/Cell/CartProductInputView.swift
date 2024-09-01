@@ -11,13 +11,13 @@ class CartProductInputView: UIView {
     //MARK: View components
     let stackView: UIStackView = UIBuilder.stackView(axis: .vertical, spacing: 16, alignment: .center)
     
-    let removeButton: UIButton = UIBuilder.roundedTextButton(text: "Quitar")
+    let removeButton: UIButton = UIBuilder.roundedTextClearButton(text: "Quitar")
     
     let quantityStack: UIStackView = UIBuilder.stackView(axis: .horizontal, spacing: 4, alignment: .fill, distribution: .equalCentering)
     
     let increaseButton: UIButton = UIBuilder.iconButton(systemName: "plus.circle.fill", iconSize: 30)
     
-    let quantityLabel: UILabel = UIBuilder.singleLineLabel(size: 20, weight: .medium, alignment: .center)
+    let quantityLabel: UILabel = UIBuilder.singleLineLabel("", size: 20, weight: .medium, alignment: .center)
     
     let decreaseButton: UIButton = UIBuilder.iconButton(systemName: "minus.circle.fill", iconSize: 30)
 
@@ -80,7 +80,8 @@ class CartProductInputView: UIView {
         NSLayoutConstraint.activate([
             removeButton.leadingAnchor.constraint(greaterThanOrEqualTo: stackView.leadingAnchor, constant: 32),
             removeButton.trailingAnchor.constraint(greaterThanOrEqualTo: stackView.trailingAnchor, constant: -32),
-            
+            removeButton.heightAnchor.constraint(equalToConstant: 44),
+
             quantityStack.leadingAnchor.constraint(greaterThanOrEqualTo: stackView.leadingAnchor, constant: 0),
             quantityStack.trailingAnchor.constraint(lessThanOrEqualTo: stackView.trailingAnchor, constant: 0),
             
@@ -95,8 +96,6 @@ class CartProductInputView: UIView {
         
         decreaseButton.tintColor = UIColor.systemRed
         increaseButton.tintColor = UIColor.systemGreen
-        
-        quantityLabel.text = "-"
     }
     
     private func setupAction() {

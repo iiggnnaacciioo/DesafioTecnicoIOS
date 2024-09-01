@@ -27,7 +27,7 @@ class LandingPageHighlightCell: UICollectionViewCell {
     
     let productLabel: UILabel = UIBuilder.multilineLabel("", style: .subheadline, weight: .medium, alignment: .left, numberOfLines: 5)
 
-    let priceLabel: UILabel = UIBuilder.singleLineLabel(size: 14, weight: .regular)
+    let priceLabel: UILabel = UIBuilder.singleLineLabel("", size: 14, weight: .regular)
     
     let buttonContainer: UIView = UIBuilder.view(color: .clear)
     

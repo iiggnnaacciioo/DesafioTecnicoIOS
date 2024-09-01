@@ -23,7 +23,7 @@ class LandingPageItemCell: UICollectionViewCell {
     
     let priceStackView: UIStackView = UIBuilder.stackView(axis: .horizontal, spacing: 8, alignment: .center)
     
-    let priceLabel: UILabel = UIBuilder.singleLineLabel(size: 14, weight: .regular)
+    let priceLabel: UILabel = UIBuilder.singleLineLabel("", size: 14, weight: .regular)
     
     let addButton: UIButton =  UIBuilder.iconButton(systemName: "plus.circle", iconSize: 30)
 

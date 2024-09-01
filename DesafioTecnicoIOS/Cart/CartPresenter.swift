@@ -30,15 +30,20 @@ extension CartPresenter: CartPresenterProtocol {
         
         let productDict = Dictionary(uniqueKeysWithValues: products.map { ($0.id, $0) })
         
-        // Map purchaseIntents to CartProductModel
+        
+        var totalPrice: Double = 0
         for intent in purchaseIntents {
             if let product = productDict[intent.productId] {
+                totalPrice += product.price * Double(intent.quantity)
                 let cartProduct = CartProductModel(product: product, quantity: intent.quantity)
                 cartProducts.append(cartProduct)
             }
         }
+        
+        let priceCL = CurrencyHelper.formatDollarToCLPesos(amount: totalPrice, exchangeRate: 900)
+        let text = "Total Amount: \(priceCL) CLP"
 
-        viewController?.show(cartProducts: cartProducts, animated: animated)
+        viewController?.show(cartProducts: cartProducts, totalAmount: text, animated: animated)
     }
     
     func present(error: URLError) {

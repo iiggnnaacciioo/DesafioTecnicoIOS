@@ -10,7 +10,7 @@
 import UIKit
 
 protocol CartViewProtocol: UIView {
-    func show(cartProducts: [CartProductModel], animated: Bool)
+    func show(cartProducts: [CartProductModel], totalAmount: String, animated: Bool)
     func show(isLoading: Bool)
 }
 
@@ -25,6 +25,8 @@ class CartView: UIView {
     let loadingView: UIActivityIndicatorView = UIBuilder.loadingView()
 
     let tableView: UITableView = UITableView()
+    
+    let totalAmountView: CartTotalAmountView = CartTotalAmountView()
     
     //MARK: Properties
     lazy var dataSource: UITableViewDiffableDataSource = makeDataSource()
@@ -44,16 +46,22 @@ class CartView: UIView {
     
     func setupView() {
         addSubview(tableView)
+        addSubview(totalAmountView)
         addSubview(loadingView)
 
         tableView.translatesAutoresizingMaskIntoConstraints = false
         loadingView.translatesAutoresizingMaskIntoConstraints = false
+        totalAmountView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0),
+            tableView.bottomAnchor.constraint(equalTo: totalAmountView.topAnchor, constant: 0),
+            
+            totalAmountView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            totalAmountView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            totalAmountView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             loadingView.centerYAnchor.constraint(equalTo: centerYAnchor),
             loadingView.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -71,6 +79,7 @@ class CartView: UIView {
         tableView.register(CartProductCell.self, forCellReuseIdentifier: CartProductCell.reuseIdentifier)
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
     }
     
     private func makeDataSource() -> UITableViewDiffableDataSource<Int, CartProductModel> {
@@ -91,11 +100,13 @@ class CartView: UIView {
 }
 
 extension CartView: CartViewProtocol {
-    func show(cartProducts: [CartProductModel], animated: Bool) {
+    func show(cartProducts: [CartProductModel], totalAmount: String, animated: Bool) {
         var snapshot = NSDiffableDataSourceSnapshot<Int, CartProductModel>()
         snapshot.appendSections([0])
         snapshot.appendItems(cartProducts, toSection: 0)
         dataSource.apply(snapshot, animatingDifferences: animated)
+        
+        totalAmountView.setup(text: totalAmount, isEnabled: !cartProducts.isEmpty)
     }
     
     func show(isLoading: Bool) {
