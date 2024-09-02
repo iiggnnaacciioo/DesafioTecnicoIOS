@@ -98,8 +98,8 @@ class CartProductCell: UITableViewCell {
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -18),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 4),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -4),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
 
             productImage.topAnchor.constraint(greaterThanOrEqualTo: productImageContainer.topAnchor, constant: 24),
             productImage.bottomAnchor.constraint(lessThanOrEqualTo: productImageContainer.bottomAnchor, constant: -24),
