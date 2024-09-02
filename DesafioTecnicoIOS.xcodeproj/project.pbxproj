@@ -96,7 +96,7 @@
 		DFD01C8E2C84ECD70058E73C /* CartProductInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartProductInputView.swift; sourceTree = "<group>"; };
 		DFD01C912C8502D10058E73C /* CartTotalAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTotalAmountView.swift; sourceTree = "<group>"; };
 		DFD01C952C8523910058E73C /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
-		DFD01C972C8546CE0058E73C /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
+		DFD01C972C8546CE0058E73C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +113,7 @@
 		DF7DDE452C849D9F00D53A4B = {
 			isa = PBXGroup;
 			children = (
+				DFD01C972C8546CE0058E73C /* README.md */,
 				DF7DDE502C849D9F00D53A4B /* DesafioTecnicoIOS */,
 				DF7DDE4F2C849D9F00D53A4B /* Products */,
 			);
@@ -138,7 +139,6 @@
 				DF7DDE5D2C849DA100D53A4B /* Assets.xcassets */,
 				DF7DDE5F2C849DA100D53A4B /* LaunchScreen.storyboard */,
 				DF7DDE622C849DA100D53A4B /* Info.plist */,
-				DFD01C972C8546CE0058E73C /* Readme.md */,
 			);
 			path = DesafioTecnicoIOS;
 			sourceTree = "<group>";
