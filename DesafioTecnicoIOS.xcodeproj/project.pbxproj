@@ -50,7 +50,19 @@
 		DFD01C922C8502D10058E73C /* CartTotalAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD01C912C8502D10058E73C /* CartTotalAmountView.swift */; };
 		DFD01C962C8523910058E73C /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD01C952C8523910058E73C /* Toast.swift */; };
 		DFD01C992C855B7B0058E73C /* ComponentBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD01C982C855B7B0058E73C /* ComponentBuilder.swift */; };
+		DFD01CA12C855EEE0058E73C /* LandingPagePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD01CA02C855EEE0058E73C /* LandingPagePresenterTests.swift */; };
+		DFD01CA82C8565650058E73C /* LandingPageInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD01CA72C8565650058E73C /* LandingPageInteractorTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DFD01CA22C855EEE0058E73C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF7DDE462C849D9F00D53A4B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DF7DDE4D2C849D9F00D53A4B;
+			remoteInfo = DesafioTecnicoIOS;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		DF7DDE4E2C849D9F00D53A4B /* DesafioTecnicoIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesafioTecnicoIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,10 +111,20 @@
 		DFD01C952C8523910058E73C /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		DFD01C972C8546CE0058E73C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DFD01C982C855B7B0058E73C /* ComponentBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentBuilder.swift; sourceTree = "<group>"; };
+		DFD01C9E2C855EED0058E73C /* DesafioTecnicoIOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DesafioTecnicoIOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFD01CA02C855EEE0058E73C /* LandingPagePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPagePresenterTests.swift; sourceTree = "<group>"; };
+		DFD01CA72C8565650058E73C /* LandingPageInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPageInteractorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		DF7DDE4B2C849D9F00D53A4B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFD01C9B2C855EED0058E73C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -117,6 +139,7 @@
 			children = (
 				DFD01C972C8546CE0058E73C /* README.md */,
 				DF7DDE502C849D9F00D53A4B /* DesafioTecnicoIOS */,
+				DFD01C9F2C855EEE0058E73C /* DesafioTecnicoIOSTests */,
 				DF7DDE4F2C849D9F00D53A4B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -125,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				DF7DDE4E2C849D9F00D53A4B /* DesafioTecnicoIOS.app */,
+				DFD01C9E2C855EED0058E73C /* DesafioTecnicoIOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -348,6 +372,15 @@
 			path = LandingPage;
 			sourceTree = "<group>";
 		};
+		DFD01C9F2C855EEE0058E73C /* DesafioTecnicoIOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				DFD01CA02C855EEE0058E73C /* LandingPagePresenterTests.swift */,
+				DFD01CA72C8565650058E73C /* LandingPageInteractorTests.swift */,
+			);
+			path = DesafioTecnicoIOSTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -368,6 +401,24 @@
 			productReference = DF7DDE4E2C849D9F00D53A4B /* DesafioTecnicoIOS.app */;
 			productType = "com.apple.product-type.application";
 		};
+		DFD01C9D2C855EED0058E73C /* DesafioTecnicoIOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DFD01CA42C855EEE0058E73C /* Build configuration list for PBXNativeTarget "DesafioTecnicoIOSTests" */;
+			buildPhases = (
+				DFD01C9A2C855EED0058E73C /* Sources */,
+				DFD01C9B2C855EED0058E73C /* Frameworks */,
+				DFD01C9C2C855EED0058E73C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DFD01CA32C855EEE0058E73C /* PBXTargetDependency */,
+			);
+			name = DesafioTecnicoIOSTests;
+			productName = DesafioTecnicoIOSTests;
+			productReference = DFD01C9E2C855EED0058E73C /* DesafioTecnicoIOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -380,6 +431,10 @@
 				TargetAttributes = {
 					DF7DDE4D2C849D9F00D53A4B = {
 						CreatedOnToolsVersion = 15.0.1;
+					};
+					DFD01C9D2C855EED0058E73C = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = DF7DDE4D2C849D9F00D53A4B;
 					};
 				};
 			};
@@ -397,6 +452,7 @@
 			projectRoot = "";
 			targets = (
 				DF7DDE4D2C849D9F00D53A4B /* DesafioTecnicoIOS */,
+				DFD01C9D2C855EED0058E73C /* DesafioTecnicoIOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -408,6 +464,13 @@
 			files = (
 				DF7DDE612C849DA100D53A4B /* LaunchScreen.storyboard in Resources */,
 				DF7DDE5E2C849DA100D53A4B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFD01C9C2C855EED0058E73C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,7 +525,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DFD01C9A2C855EED0058E73C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DFD01CA82C8565650058E73C /* LandingPageInteractorTests.swift in Sources */,
+				DFD01CA12C855EEE0058E73C /* LandingPagePresenterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DFD01CA32C855EEE0058E73C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DF7DDE4D2C849D9F00D53A4B /* DesafioTecnicoIOS */;
+			targetProxy = DFD01CA22C855EEE0058E73C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		DF7DDE5F2C849DA100D53A4B /* LaunchScreen.storyboard */ = {
@@ -651,6 +731,42 @@
 			};
 			name = Release;
 		};
+		DFD01CA52C855EEE0058E73C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GRGY335XL5;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.isgfb.DesafioTecnicoIOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DesafioTecnicoIOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DesafioTecnicoIOS";
+			};
+			name = Debug;
+		};
+		DFD01CA62C855EEE0058E73C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GRGY335XL5;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.isgfb.DesafioTecnicoIOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DesafioTecnicoIOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DesafioTecnicoIOS";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -668,6 +784,15 @@
 			buildConfigurations = (
 				DF7DDE662C849DA100D53A4B /* Debug */,
 				DF7DDE672C849DA100D53A4B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DFD01CA42C855EEE0058E73C /* Build configuration list for PBXNativeTarget "DesafioTecnicoIOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFD01CA52C855EEE0058E73C /* Debug */,
+				DFD01CA62C855EEE0058E73C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
