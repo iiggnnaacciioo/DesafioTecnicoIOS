@@ -26,8 +26,6 @@ class CartProductCell: UITableViewCell {
     let priceLabel: UILabel = UIBuilder.singleLineLabel("", size: 14, weight: .regular)
     
     let productInputView: CartProductInputView = CartProductInputView()
-
-    let separator: UIView = UIBuilder.view(color: UIColor(white: 0.8, alpha: 1))
     
     //MARK: Properties
     var imageURL: String = ""
@@ -85,10 +83,8 @@ class CartProductCell: UITableViewCell {
         infoStackView.translatesAutoresizingMaskIntoConstraints = false
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         productInputView.translatesAutoresizingMaskIntoConstraints = false
-        separator.translatesAutoresizingMaskIntoConstraints = false
 
         contentView.addSubview(stackView)
-        contentView.addSubview(separator)
 
         stackView.addArrangedSubview(productImageContainer)
         stackView.addArrangedSubview(infoStackView)
@@ -109,11 +105,6 @@ class CartProductCell: UITableViewCell {
             productImage.bottomAnchor.constraint(lessThanOrEqualTo: productImageContainer.bottomAnchor, constant: -24),
             productImage.leadingAnchor.constraint(equalTo: productImageContainer.leadingAnchor, constant: 24),
             productImage.trailingAnchor.constraint(equalTo: productImageContainer.trailingAnchor, constant: -24),
-
-            separator.heightAnchor.constraint(equalToConstant: 1),
-            separator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            separator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            separator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ])
         
         productImage.setContentHuggingPriority(.defaultLow, for: .vertical)

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		DF7DDE522C849D9F00D53A4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7DDE512C849D9F00D53A4B /* AppDelegate.swift */; };
 		DF7DDE542C849D9F00D53A4B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7DDE532C849D9F00D53A4B /* SceneDelegate.swift */; };
-		DF7DDE5C2C849D9F00D53A4B /* DesafioTecnicoIOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF7DDE5A2C849D9F00D53A4B /* DesafioTecnicoIOS.xcdatamodeld */; };
 		DF7DDE5E2C849DA100D53A4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF7DDE5D2C849DA100D53A4B /* Assets.xcassets */; };
 		DF7DDE612C849DA100D53A4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF7DDE5F2C849DA100D53A4B /* LaunchScreen.storyboard */; };
 		DF7DDE6A2C849F6A00D53A4B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7DDE692C849F6900D53A4B /* TabBarController.swift */; };
@@ -56,7 +55,6 @@
 		DF7DDE4E2C849D9F00D53A4B /* DesafioTecnicoIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesafioTecnicoIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF7DDE512C849D9F00D53A4B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DF7DDE532C849D9F00D53A4B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DF7DDE5B2C849D9F00D53A4B /* DesafioTecnicoIOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DesafioTecnicoIOS.xcdatamodel; sourceTree = "<group>"; };
 		DF7DDE5D2C849DA100D53A4B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF7DDE602C849DA100D53A4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DF7DDE622C849DA100D53A4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -98,6 +96,7 @@
 		DFD01C8E2C84ECD70058E73C /* CartProductInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartProductInputView.swift; sourceTree = "<group>"; };
 		DFD01C912C8502D10058E73C /* CartTotalAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTotalAmountView.swift; sourceTree = "<group>"; };
 		DFD01C952C8523910058E73C /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		DFD01C972C8546CE0058E73C /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,7 +138,7 @@
 				DF7DDE5D2C849DA100D53A4B /* Assets.xcassets */,
 				DF7DDE5F2C849DA100D53A4B /* LaunchScreen.storyboard */,
 				DF7DDE622C849DA100D53A4B /* Info.plist */,
-				DF7DDE5A2C849D9F00D53A4B /* DesafioTecnicoIOS.xcdatamodeld */,
+				DFD01C972C8546CE0058E73C /* Readme.md */,
 			);
 			path = DesafioTecnicoIOS;
 			sourceTree = "<group>";
@@ -435,7 +434,6 @@
 				DFD01C782C84B1DA0058E73C /* LandingPageHighlightCell.swift in Sources */,
 				DFD01C602C84B1790058E73C /* CategoriesViewController.swift in Sources */,
 				DFD01C7A2C84B1DA0058E73C /* LandingPageInteractor.swift in Sources */,
-				DF7DDE5C2C849D9F00D53A4B /* DesafioTecnicoIOS.xcdatamodeld in Sources */,
 				DF7DDE522C849D9F00D53A4B /* AppDelegate.swift in Sources */,
 				DFD01C962C8523910058E73C /* Toast.swift in Sources */,
 				DFD01C8F2C84ECD70058E73C /* CartProductInputView.swift in Sources */,
@@ -671,19 +669,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		DF7DDE5A2C849D9F00D53A4B /* DesafioTecnicoIOS.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				DF7DDE5B2C849D9F00D53A4B /* DesafioTecnicoIOS.xcdatamodel */,
-			);
-			currentVersion = DF7DDE5B2C849D9F00D53A4B /* DesafioTecnicoIOS.xcdatamodel */;
-			path = DesafioTecnicoIOS.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = DF7DDE462C849D9F00D53A4B /* Project object */;
 }
