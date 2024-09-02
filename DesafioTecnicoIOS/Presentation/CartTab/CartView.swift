@@ -62,10 +62,10 @@ class CartView: UIView {
         totalAmountBottomConstraint = totalAmountView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 200)
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0),
-            tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0),
+            tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
 
             topGradient.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             topGradient.trailingAnchor.constraint(equalTo: self.trailingAnchor),

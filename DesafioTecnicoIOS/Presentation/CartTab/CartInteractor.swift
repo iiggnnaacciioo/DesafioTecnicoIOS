@@ -22,8 +22,8 @@ class CartInteractor {
     let apiClient: FakeStoreApiClientProtocol
 
     let localStorage: LocalStorageProtocol
-    
-    var productResponse: [ProductResponse] = []
+    ///ProductResponse array cache to fetch that data only once each time the view is presented
+    var productsResponse: [ProductResponse] = []
 
 	init(presenter: CartPresenterProtocol, apiClient: FakeStoreApiClientProtocol, localStorage: LocalStorageProtocol) {
 		self.presenter = presenter
@@ -38,6 +38,11 @@ extension CartInteractor: CartInteractorProtocol {
             let purchaseIntents = await localStorage.loadStoredCart()
             let productIds: [Int] = purchaseIntents.map {
                 $0.productId
+            }
+            
+            guard productsResponse.isEmpty else {
+                presenter.present(products: productsResponse, purchaseIntents: purchaseIntents, animated: animated)
+                return
             }
             
             do {
@@ -55,7 +60,7 @@ extension CartInteractor: CartInteractorProtocol {
                     }
                     return products
                 }
-                productResponse = products
+                productsResponse = products
                 presenter.present(products: products, purchaseIntents: purchaseIntents, animated: animated)
             } catch {
                 presenter.present(error: error as? URLError ?? URLError(.badServerResponse))
@@ -67,7 +72,7 @@ extension CartInteractor: CartInteractorProtocol {
         Task { @MainActor in
             await localStorage.addOne(productId: productId)
             let purchaseIntents = await localStorage.loadStoredCart()
-            presenter.present(products: productResponse, purchaseIntents: purchaseIntents, animated: false)
+            presenter.present(products: productsResponse, purchaseIntents: purchaseIntents, animated: false)
         }
     }
     
@@ -75,7 +80,7 @@ extension CartInteractor: CartInteractorProtocol {
         Task {  @MainActor in
             await localStorage.removeOne(productId: productId)
             let purchaseIntents = await localStorage.loadStoredCart()
-            presenter.present(products: productResponse, purchaseIntents: purchaseIntents, animated: false)
+            presenter.present(products: productsResponse, purchaseIntents: purchaseIntents, animated: false)
         }
     }
     

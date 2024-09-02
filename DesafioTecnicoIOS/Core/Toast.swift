@@ -85,7 +85,7 @@ class ToastView: UIView {
         
         label.isHidden = true
         
-        backgroundColor = .systemGray3
+        backgroundColor = UIColor(white: 0.3, alpha: 1)
         
         
         let work = DispatchWorkItem(block: { [weak self] in
