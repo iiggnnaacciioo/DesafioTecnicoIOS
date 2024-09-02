@@ -58,6 +58,7 @@ class LandingPageHighlightCell: UICollectionViewCell {
     }
     
     @objc func addProductWasTapped() {
+        disableAddButtonTemporarily()
         addProductAction?()
     }
     

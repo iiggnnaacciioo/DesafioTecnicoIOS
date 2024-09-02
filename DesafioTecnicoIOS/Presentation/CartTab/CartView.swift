@@ -31,6 +31,8 @@ class CartView: UIView {
     let totalAmountView: CartTotalAmountView = CartTotalAmountView()
     
     //MARK: Properties
+    var totalAmountBottomConstraint: NSLayoutConstraint = NSLayoutConstraint()
+    
     lazy var dataSource: UITableViewDiffableDataSource = makeDataSource()
 
 	weak var delegate: CartViewDelegate?
@@ -57,11 +59,13 @@ class CartView: UIView {
         loadingView.translatesAutoresizingMaskIntoConstraints = false
         totalAmountView.translatesAutoresizingMaskIntoConstraints = false
 
+        totalAmountBottomConstraint = totalAmountView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 200)
+        
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            tableView.bottomAnchor.constraint(equalTo: totalAmountView.topAnchor, constant: 0),
+            tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0),
 
             topGradient.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             topGradient.trailingAnchor.constraint(equalTo: self.trailingAnchor),
@@ -70,7 +74,7 @@ class CartView: UIView {
 
             totalAmountView.leadingAnchor.constraint(equalTo: leadingAnchor),
             totalAmountView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            totalAmountView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            totalAmountBottomConstraint,
             
             loadingView.centerYAnchor.constraint(equalTo: centerYAnchor),
             loadingView.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -91,7 +95,7 @@ class CartView: UIView {
         tableView.register(CartProductCell.self, forCellReuseIdentifier: CartProductCell.reuseIdentifier)
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 200, right: 0)
     }
     
     private func makeDataSource() -> UITableViewDiffableDataSource<Int, CartProductModel> {
@@ -119,6 +123,11 @@ extension CartView: CartViewProtocol {
         dataSource.apply(snapshot, animatingDifferences: animated)
         
         totalAmountView.setup(text: totalAmount, isEnabled: !cartProducts.isEmpty)
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.85, initialSpringVelocity: 0.01, animations: { [weak self] in
+            self?.totalAmountBottomConstraint.constant = 0
+            self?.layoutIfNeeded()
+        })
     }
     
     func show(isLoading: Bool) {

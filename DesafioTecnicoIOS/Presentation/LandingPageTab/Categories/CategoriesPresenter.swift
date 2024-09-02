@@ -11,6 +11,7 @@ import Foundation
 
 protocol CategoriesPresenterProtocol {
     func present(categories: [String])
+    func presentError(error: URLError)
 }
 
 class CategoriesPresenter {
@@ -28,5 +29,9 @@ extension CategoriesPresenter: CategoriesPresenterProtocol {
         }
         categoryItems.insert(CategoryItemModel(name: "Todos", path: nil), at: 0)
         viewController?.show(categories: categoryItems)
+    }
+    
+    func presentError(error: URLError) {
+        viewController?.showError(message: error.localizedDescription)
     }
 }

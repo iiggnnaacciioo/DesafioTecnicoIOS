@@ -15,7 +15,8 @@ protocol LandingPageViewControllerProtocol: AnyObject {
     func updateCartItem(quantity: String?)
 }
 
-class LandingPageViewController: UIViewController {
+class LandingPageViewController: UIViewController, Toast {
+    var toastView: ToastView?
     
     var blurView: UIView?
 
@@ -99,6 +100,12 @@ class LandingPageViewController: UIViewController {
             blurView = nil
         }
     }
+    
+    private func showAddToCartToast(delay: TimeInterval) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
+            self?.showToast(message: "Producto añadido al carro", parentView: self?.view)
+        }
+    }
 }
 
 //MARK: LandingPageViewControllerProtocol
@@ -133,6 +140,8 @@ extension LandingPageViewController: LandingPageViewDelegate {
     func showProductDetail(selectedProductId: Int) {
         let vc = ProductDetailPageViewController.instance(productId: selectedProductId) { [weak self] in
             self?.interactor?.loadPurchaseIntents()
+        } showToastAction: { [weak self] in
+            self?.showAddToCartToast(delay: 0.4)
         }
         guard let navigationController = navigationController else {
             return
@@ -145,5 +154,6 @@ extension LandingPageViewController: LandingPageViewDelegate {
     
     func addToCart(selectedProductId: Int) {
         interactor?.addToCart(productId: selectedProductId)
+        showAddToCartToast(delay: 0)
     }
 }

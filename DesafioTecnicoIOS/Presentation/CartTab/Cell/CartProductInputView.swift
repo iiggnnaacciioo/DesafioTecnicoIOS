@@ -48,6 +48,9 @@ class CartProductInputView: UIView {
         self.decreaseAction = decreaseAction
         self.deleteAction = deleteAction
         quantityLabel.text = String(quantity)
+        
+        removeButton.isEnabled = true
+        removeButton.layer.borderColor = UIColor.systemBlue.cgColor
     }
     
     @objc func decreaseButtonWasPressed() {
@@ -59,7 +62,13 @@ class CartProductInputView: UIView {
     }
     
     @objc func removeButtonWasPressed() {
+        disableButtons()
         deleteAction?()
+    }
+    
+    private func disableButtons() {
+        removeButton.layer.borderColor = UIColor.lightGray.cgColor
+        removeButton.isEnabled = false
     }
 
     private func setupView() {

@@ -49,6 +49,7 @@
 		DFD01C8D2C84D5780058E73C /* CartProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD01C8C2C84D5780058E73C /* CartProductCell.swift */; };
 		DFD01C8F2C84ECD70058E73C /* CartProductInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD01C8E2C84ECD70058E73C /* CartProductInputView.swift */; };
 		DFD01C922C8502D10058E73C /* CartTotalAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD01C912C8502D10058E73C /* CartTotalAmountView.swift */; };
+		DFD01C962C8523910058E73C /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD01C952C8523910058E73C /* Toast.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,7 @@
 		DFD01C8C2C84D5780058E73C /* CartProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartProductCell.swift; sourceTree = "<group>"; };
 		DFD01C8E2C84ECD70058E73C /* CartProductInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartProductInputView.swift; sourceTree = "<group>"; };
 		DFD01C912C8502D10058E73C /* CartTotalAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTotalAmountView.swift; sourceTree = "<group>"; };
+		DFD01C952C8523910058E73C /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 				DFD01C3F2C84B1790058E73C /* CurrencyHelper.swift */,
 				DFD01C402C84B1790058E73C /* Extensions */,
 				DFD01C432C84B1790058E73C /* UIBuilder.swift */,
+				DFD01C952C8523910058E73C /* Toast.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				DFD01C7A2C84B1DA0058E73C /* LandingPageInteractor.swift in Sources */,
 				DF7DDE5C2C849D9F00D53A4B /* DesafioTecnicoIOS.xcdatamodeld in Sources */,
 				DF7DDE522C849D9F00D53A4B /* AppDelegate.swift in Sources */,
+				DFD01C962C8523910058E73C /* Toast.swift in Sources */,
 				DFD01C8F2C84ECD70058E73C /* CartProductInputView.swift in Sources */,
 				DFD01C5D2C84B1790058E73C /* CategoryCell.swift in Sources */,
 				DFD01C5A2C84B1790058E73C /* UIImageView + Extensions.swift in Sources */,
@@ -596,7 +600,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = GRGY335XL5;
+				DEVELOPMENT_TEAM = 6D9YK3G6YK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DesafioTecnicoIOS/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -624,7 +628,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = GRGY335XL5;
+				DEVELOPMENT_TEAM = 6D9YK3G6YK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DesafioTecnicoIOS/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

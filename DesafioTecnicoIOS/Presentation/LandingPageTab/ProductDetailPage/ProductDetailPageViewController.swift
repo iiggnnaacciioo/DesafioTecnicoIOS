@@ -15,7 +15,9 @@ protocol ProductDetailPageViewControllerProtocol: AnyObject {
     func showAddedToCart()
 }
 
-class ProductDetailPageViewController: UIViewController {
+class ProductDetailPageViewController: UIViewController, Toast {
+    var toastView: ToastView?
+    
 	var productDetailPageView: ProductDetailPageViewProtocol?
 
 	var interactor: ProductDetailPageInteractorProtocol?
@@ -23,11 +25,14 @@ class ProductDetailPageViewController: UIViewController {
     let productId: Int
     
     let closeAction: () -> ()
+    
+    let showToastAction: () -> ()
 
     //MARK: Life cycle
-    init(productId: Int, closeAction: @escaping() -> ()) {
+    init(productId: Int, closeAction: @escaping() -> (), showToastAction: @escaping() -> ()) {
         self.productId = productId
         self.closeAction = closeAction
+        self.showToastAction = showToastAction
 		super.init(nibName: nil, bundle: nil)
 		productDetailPageView = ProductDetailPageView(delegate: self)
 	}
@@ -38,6 +43,7 @@ class ProductDetailPageViewController: UIViewController {
 
 	override func loadView() {
 		super.loadView()
+        self.edgesForExtendedLayout = []
 		view = productDetailPageView
 	}
     
@@ -46,8 +52,8 @@ class ProductDetailPageViewController: UIViewController {
         interactor?.fetchProductDetails(productId: productId)
     }
     
-    static func instance(productId: Int, closeAction: @escaping() -> ()) -> ProductDetailPageViewController {
-        let vc = ProductDetailPageViewController(productId: productId, closeAction: closeAction)
+    static func instance(productId: Int, closeAction: @escaping() -> (), showToastAction: @escaping() -> ()) -> ProductDetailPageViewController {
+        let vc = ProductDetailPageViewController(productId: productId, closeAction: closeAction, showToastAction: showToastAction)
         let presenter = ProductDetailPagePresenter(viewController: vc)
         let apiClient = FakeStoreApiClient()
         let localStorage = LocalStorage()
@@ -73,6 +79,7 @@ extension ProductDetailPageViewController: ProductDetailPageViewControllerProtoc
     
     func showAddedToCart() {
         productDetailPageView?.animateOutro()
+        showToastAction()
     }
 }
 

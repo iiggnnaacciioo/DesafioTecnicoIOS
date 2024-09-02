@@ -31,7 +31,7 @@ extension CategoriesInteractor: CategoriesInteractorProtocol {
                 let categories = try await apiClient.getProductCategories()
                 presenter.present(categories: categories)
             } catch {
-                
+                presenter.presentError(error: error as? URLError ?? URLError(.unknown))
             }
         }
     }

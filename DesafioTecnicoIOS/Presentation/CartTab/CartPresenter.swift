@@ -24,7 +24,6 @@ class CartPresenter {
 
 extension CartPresenter: CartPresenterProtocol {
     func present(products: [ProductResponse], purchaseIntents: [ProductPurchaseIntent], animated: Bool) {
-        print("eraser me now \(purchaseIntents)")
 
         var cartProducts: [CartProductModel] = []
         

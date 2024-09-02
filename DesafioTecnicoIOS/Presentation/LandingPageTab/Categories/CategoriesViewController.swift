@@ -11,6 +11,7 @@ import UIKit
 
 protocol CategoriesViewControllerProtocol: AnyObject {
     func show(categories: [CategoryItemModel])
+    func showError(message: String)
 }
 
 class CategoriesViewController: UIViewController {
@@ -41,6 +42,7 @@ class CategoriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        categoriesView?.show(isLoading: true)
         interactor?.fetchCategories()
     }
     
@@ -56,7 +58,18 @@ class CategoriesViewController: UIViewController {
 
 extension CategoriesViewController: CategoriesViewControllerProtocol {
     func show(categories: [CategoryItemModel]) {
+        categoriesView?.show(isLoading: false)
         categoriesView?.show(categories: categories)
+    }
+    
+    func showError(message: String) {
+        categoriesView?.show(isLoading: false)
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alert.overrideUserInterfaceStyle = .light
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { [weak self] _ in
+            self?.close()
+        }))
+        present(alert, animated: true)
     }
 }
 

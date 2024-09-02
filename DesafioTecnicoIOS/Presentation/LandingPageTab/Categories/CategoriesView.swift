@@ -11,6 +11,7 @@ import UIKit
 
 protocol CategoriesViewProtocol: UIView {
     func show(categories: [CategoryItemModel])
+    func show(isLoading: Bool)
 }
 
 protocol CategoriesViewDelegate: AnyObject {
@@ -20,6 +21,8 @@ protocol CategoriesViewDelegate: AnyObject {
 
 class CategoriesView: UIView {
     //MARK: View components
+    let loadingView = UIBuilder.loadingView()
+    
     let titleLabel = UIBuilder.multilineLabel("Categories", style: .title2, weight: .semibold, alignment: .left)
     
     let closeButton: UIButton =  UIBuilder.iconButton(systemName: "xmark", iconSize: 16)
@@ -53,10 +56,12 @@ class CategoriesView: UIView {
         addSubview(titleLabel)
         addSubview(closeButton)
         addSubview(tableView)
+        addSubview(loadingView)
 
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        loadingView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
@@ -71,7 +76,10 @@ class CategoriesView: UIView {
             tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 32),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            tableView.heightAnchor.constraint(equalToConstant: 44 * 4)
+            tableView.heightAnchor.constraint(equalToConstant: 44 * 4),
+            
+            loadingView.centerXAnchor.constraint(equalTo: tableView.centerXAnchor),
+            loadingView.centerYAnchor.constraint(equalTo: tableView.centerYAnchor),
         ])
 
         backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 245/255, alpha: 0.75)
@@ -111,5 +119,13 @@ extension CategoriesView: CategoriesViewProtocol {
         snapshot.appendSections([0])
         snapshot.appendItems(categories, toSection: 0)
         dataSource.apply(snapshot)
+    }
+    
+    func show(isLoading: Bool) {
+        if isLoading {
+            loadingView.startAnimating()
+        } else {
+            loadingView.stopAnimating()
+        }
     }
 }

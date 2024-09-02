@@ -63,6 +63,7 @@ struct UIBuilder {
         b.setTitle(text, for: .normal)
         b.setTitleColor(.darkText, for: .normal)
         b.setTitleColor(.darkText.withAlphaComponent(0.6), for: .highlighted)
+        b.setTitleColor(.lightGray, for: .disabled)
         b.layer.cornerRadius = 8
         b.layer.borderWidth = 1
         b.layer.borderColor = UIColor.systemBlue.cgColor
@@ -74,6 +75,7 @@ struct UIBuilder {
         b.setTitle(text, for: .normal)
         b.setTitleColor(.white, for: .normal)
         b.setTitleColor(.white.withAlphaComponent(0.6), for: .highlighted)
+        b.setTitleColor(.white.withAlphaComponent(0.2), for: .disabled)
         b.layer.cornerRadius = 8
         b.backgroundColor = UIColor.systemBlue
         return b
