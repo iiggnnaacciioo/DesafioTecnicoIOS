@@ -17,7 +17,7 @@ class CartProductInputView: UIView {
     
     let increaseButton: UIButton = UIBuilder.iconButton(systemName: "plus.circle.fill", iconSize: 30)
     
-    let quantityLabel: UILabel = UIBuilder.singleLineLabel("", size: 20, weight: .medium, alignment: .center)
+    let quantityLabel: UILabel = UIBuilder.singleLineLabel("", style: .title3, weight: .medium, alignment: .center)
     
     let decreaseButton: UIButton = UIBuilder.iconButton(systemName: "minus.circle.fill", iconSize: 30)
 

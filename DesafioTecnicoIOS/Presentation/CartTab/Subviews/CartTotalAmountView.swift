@@ -11,7 +11,7 @@ class CartTotalAmountView: UIView {
     //MARK: View Components
     let stackView = UIBuilder.stackView(axis: .vertical, spacing: 16, alignment: .center)
     
-    let titleLabel = UIBuilder.singleLineLabel(" ", size: 29, weight: .bold, alignment: .left)
+    let titleLabel = UIBuilder.singleLineLabel(" ", style: .title1, weight: .bold, alignment: .left)
     
     let button = UIBuilder.roundedTextFilledButton(text: "Purchase")
     

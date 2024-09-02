@@ -19,9 +19,10 @@ struct UIBuilder {
         return l
     }
     
-    static func singleLineLabel(_ text: String, size: CGFloat, weight: UIFont.Weight, alignment: NSTextAlignment = .left) -> UILabel {
+    static func singleLineLabel(_ text: String, style: UIFont.TextStyle, weight: UIFont.Weight, alignment: NSTextAlignment = .left) -> UILabel {
         let l = UILabel()
-        l.font = UIFont.systemFont(ofSize: size, weight: weight)
+        let font = UIFont.preferredFont(forTextStyle: style)
+        l.font = UIFont.systemFont(ofSize: font.pointSize, weight: weight)
         l.textColor = .darkText
         l.text = text
         l.numberOfLines = 1
