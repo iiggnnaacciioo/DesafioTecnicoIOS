@@ -101,7 +101,7 @@ class LandingPageView: UIView {
         collectionView.collectionViewLayout = layout
         collectionView.dataSource = dataSource
         collectionView.delegate = self
-        collectionView.contentInset = UIEdgeInsets(top: margin, left: margin, bottom: margin * 2, right: margin)
+        collectionView.contentInset = UIEdgeInsets(top: margin, left: margin, bottom: 100, right: margin)
         collectionView.register(LandingPageHighlightCell.self, forCellWithReuseIdentifier: LandingPageHighlightCell.reuseIdentifier)
         collectionView.register(LandingPageItemCell.self, forCellWithReuseIdentifier: LandingPageItemCell.reuseIdentifier)
     }
@@ -137,7 +137,7 @@ extension LandingPageView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let collectionViewWidth = collectionView.frame.size.width - margin * 2
         if indexPath.section == 0 {
-            return CGSizeMake(collectionViewWidth, 220)
+            return CGSizeMake(collectionViewWidth, 230)
         } else {
             return CGSizeMake(collectionViewWidth / 2, 212)
         }
