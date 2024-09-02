@@ -45,15 +45,6 @@ class CategoriesViewController: UIViewController {
         categoriesView?.show(isLoading: true)
         interactor?.fetchCategories()
     }
-    
-    static func instance(filterWithCategoriesAction: @escaping(_ category: String?) -> (), closeAction: @escaping() -> ()) -> CategoriesViewController {
-        let vc = CategoriesViewController(filterWithCategoriesAction: filterWithCategoriesAction, closeAction: closeAction)
-        let presenter = CategoriesPresenter(viewController: vc)
-        let apiClient = FakeStoreApiClient()
-        let interactor = CategoriesInteractor(presenter: presenter, apiClient: apiClient)
-        vc.interactor = interactor
-        return vc
-    }
 }
 
 extension CategoriesViewController: CategoriesViewControllerProtocol {

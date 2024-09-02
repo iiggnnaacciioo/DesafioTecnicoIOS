@@ -65,18 +65,6 @@ class CartViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "No", style: .default))
         present(alert, animated: true)
     }
-    
-    static func instance(closeAction: @escaping() -> ()) -> CartViewController {
-        let vc = CartViewController(closeAction: closeAction)
-        let presenter = CartPresenter(viewController: vc)
-        let localStorage = LocalStorage()
-        let apiClient = FakeStoreApiClient()
-        let interactor = CartInteractor(presenter: presenter,
-                                        apiClient: apiClient,
-                                        localStorage: localStorage)
-        vc.interactor = interactor
-        return vc
-    }
 }
 
 extension CartViewController: CartViewControllerProtocol {

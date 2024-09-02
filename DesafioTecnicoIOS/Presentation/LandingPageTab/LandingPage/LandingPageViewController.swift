@@ -57,18 +57,8 @@ class LandingPageViewController: UIViewController, Toast {
         interactor?.fetchProducts(category: category)
     }
     
-    static var instance: LandingPageViewController {
-        let vc = LandingPageViewController()
-        let presenter = LandingPagePresenter(viewController: vc)
-        let localStorage = LocalStorage()
-        let apiClient = FakeStoreApiClient()
-        let interactor = LandingPageInteractor(presenter: presenter, apiClient: apiClient, localStorage: localStorage)
-        vc.interactor = interactor
-        return vc
-    }
-    
     @objc func showCategories() {
-        let vc = CategoriesViewController.instance { [weak self] category in
+        let vc = ComponentBuilder.categoriesViewController { [weak self] category in
             self?.blur(on: false)
             self?.fetchProducts(category: category)
         } closeAction: { [weak self] in
@@ -138,7 +128,7 @@ extension LandingPageViewController: LandingPageViewControllerProtocol {
 //MARK: LandingPageViewDelegate
 extension LandingPageViewController: LandingPageViewDelegate {
     func showProductDetail(selectedProductId: Int) {
-        let vc = ProductDetailPageViewController.instance(productId: selectedProductId) { [weak self] in
+        let vc = ComponentBuilder.productDetailPageViewController(productId: selectedProductId) { [weak self] in
             self?.interactor?.loadPurchaseIntents()
         } showToastAction: { [weak self] in
             self?.showAddToCartToast(delay: 0.4)

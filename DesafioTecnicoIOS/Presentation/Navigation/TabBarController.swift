@@ -22,7 +22,7 @@ class TabBarController: UITabBarController {
     }
     
     private func setupViewControllers() {
-        let firstVC = LandingPageViewController.instance
+        let firstVC = ComponentBuilder.landingPageViewController()
         firstVC.title = "Home"
         firstVC.tabBarItem.tag = 0
         firstVC.tabBarItem.image = UIImage(systemName: "house")?.withBaselineOffset(fromBottom: 18)
@@ -41,7 +41,7 @@ class TabBarController: UITabBarController {
         
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if item.tag == 1 {
-            let vc = CartViewController.instance { [weak self] in
+            let vc = ComponentBuilder.cartViewController { [weak self] in
                 self?.selectedIndex = 0
             }
             navigationController?.pushViewController(vc, animated: true)

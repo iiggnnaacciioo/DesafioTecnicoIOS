@@ -51,16 +51,6 @@ class ProductDetailPageViewController: UIViewController, Toast {
         super.viewDidLoad()
         interactor?.fetchProductDetails(productId: productId)
     }
-    
-    static func instance(productId: Int, closeAction: @escaping() -> (), showToastAction: @escaping() -> ()) -> ProductDetailPageViewController {
-        let vc = ProductDetailPageViewController(productId: productId, closeAction: closeAction, showToastAction: showToastAction)
-        let presenter = ProductDetailPagePresenter(viewController: vc)
-        let apiClient = FakeStoreApiClient()
-        let localStorage = LocalStorage()
-        let interactor = ProductDetailPageInteractor(presenter: presenter, apiClient: apiClient, localStorage: localStorage)
-        vc.interactor = interactor
-        return vc
-    }
 }
 
 extension ProductDetailPageViewController: ProductDetailPageViewControllerProtocol {
